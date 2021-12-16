@@ -19,7 +19,10 @@ namespace Org.BouncyCastle.Cms
         private IKeyWrapper keyWrapper;
 
         // Derived fields
+#pragma warning disable 649
+        // This seems not to be properly implemened
         private SubjectPublicKeyInfo info;
+#pragma warning restore
         private IssuerAndSerialNumber issuerAndSerialNumber;
         private SecureRandom random;
        
