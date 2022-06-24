@@ -258,7 +258,7 @@ namespace Org.BouncyCastle.Crypto.Prng.Drbg
 
 	        while (i * outLen < temp.Length)
 	        {
-	            mEngine.ProcessBlock(X, 0, X, 0);
+	            mEngine.ProcessBlock(K, 0, X, 0);
 
 	            int bytesToCopy = ((temp.Length - i * outLen) > outLen)
 	                    ? outLen
