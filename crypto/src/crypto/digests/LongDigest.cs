@@ -88,6 +88,27 @@ namespace Org.BouncyCastle.Crypto.Digests
             return GetDigestSize();
         }
 
+        public void SetCurrentDigest(byte[] input, int inOff)
+        {
+            if((input.Length - inOff) < 8 * sizeof(ulong))
+            {
+                throw new ArgumentException(
+                    $"Not enough data in the buffer, expected at least {8 * sizeof(ulong)}, but got {input.Length - inOff}"
+                );
+            }
+
+            Reset();
+
+            H1 = Pack.BE_To_UInt64(input, inOff);
+            H2 = Pack.BE_To_UInt64(input, inOff + 8);
+            H3 = Pack.BE_To_UInt64(input, inOff + 16);
+            H4 = Pack.BE_To_UInt64(input, inOff + 24);
+            H5 = Pack.BE_To_UInt64(input, inOff + 32);
+            H6 = Pack.BE_To_UInt64(input, inOff + 40);
+            H7 = Pack.BE_To_UInt64(input, inOff + 48);
+            H8 = Pack.BE_To_UInt64(input, inOff + 56);
+        }
+
         public void Update(
             byte input)
         {
